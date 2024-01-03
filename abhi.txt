@@ -1,0 +1,80 @@
+
+
+Import Required Modules:
+
+const fs = require('fs');
+const { google } = require('googleapis');
+const readline = require('readline');
+const { googleAuth } = require('google-auth-library');
+
+
+Define Scopes: -- now define scope
+
+const SCOPES = ['https://www.googleapis.com/auth/gmail.modify'];
+
+
+Authorize and Get OAuth2 Client:
+
+Read the credentials from new_credentials.json.
+
+Create an OAuth2 client using the credentials.
+
+Attempt to read the existing token from token.json.
+
+If the token exists, set it as credentials in the OAuth2 client.
+
+If the token is missing or invalid, call the getAccessToken function to obtain a new one.
+
+Refresh Access Token:
+
+A function refreshAccessToken is defined to refresh the access token using the refresh token.
+
+Get Access Token:
+
+A function getAccessToken is defined to guide the user through the OAuth2 authorization process.
+
+Generates an authorization URL and prompts the user to visit it.
+
+Reads the authorization code entered by the user.
+
+Exchanges the authorization code for an access token and sets it as credentials in the OAuth2 client.
+
+Writes the obtained token to token.json for subsequent program executions.
+
+Check for New Emails:
+
+A function checkForNewEmails is defined to use the Gmail API to list messages in the Inbox.
+Checks if there are new emails and returns the ID of the first email if found.
+
+Send Replies to Emails:
+
+
+A function sendReplies is defined to send replies to emails based on certain criteria.
+
+Retrieves details of the selected email, extracts subject and sender information.
+
+Checks if there are any prior sent emails in the thread.
+If no prior sent emails are found, sends a reply to the email using the Gmail API.
+
+Add Label and Move Email:
+
+A function addLabelAndMove is defined to add a label to the email and move it.
+
+Checks if the specified label exists.
+
+If the label does not exist, creates a new label and adds it to the email.
+
+If the label already exists, adds it to the email.
+
+Repeat Sequence in Random Intervals:
+
+A function repeatSequence is defined to run an infinite loop with a random interval between iterations.
+
+Calls functions to check for new emails, send replies, and add labels/move emails if a new email is found.
+
+
+Main Function:
+The main function is defined to authorize the app and initiate the repeat sequence.
+
+Run the App:
+The app is executed by calling the main function.
